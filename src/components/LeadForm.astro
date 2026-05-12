@@ -1,0 +1,130 @@
+---
+import { client } from '../client.config';
+---
+
+<section class="bg-dark-surface py-24 px-6" id="estimate">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+      <!-- Left copy -->
+      <div class="scroll-reveal">
+        <p class="font-barlow font-bold text-electric text-sm tracking-[0.3em] uppercase mb-3">Free Estimate</p>
+        <h2 class="font-barlow font-black text-white mb-6" style="font-size: clamp(2.5rem, 5vw, 4rem); line-height:1.05; letter-spacing:-0.02em;">
+          Tell Us What<br/>You Need.
+        </h2>
+        <p class="text-neutral-400 leading-relaxed mb-8">
+          Fill out the form and Aaron will personally call you within 2 hours to discuss your project and give you an honest, upfront quote.
+        </p>
+
+        <div class="space-y-5">
+          {[
+            {
+              svg: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+              title: 'Fast Response',
+              desc: 'Call back within 2 business hours',
+            },
+            {
+              svg: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>`,
+              title: 'Free Estimates',
+              desc: 'No cost, no obligation',
+            },
+            {
+              svg: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`,
+              title: 'Upfront Pricing',
+              desc: 'Know the cost before work starts',
+            },
+          ].map(item => (
+            <div class="flex items-start gap-4">
+              <span class="text-electric flex-shrink-0 mt-0.5" set:html={item.svg} />
+              <div>
+                <p class="font-semibold text-white">{item.title}</p>
+                <p class="text-sm text-neutral-500">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-10 pt-8 border-t border-dark-border">
+          <p class="text-sm text-neutral-500 mb-2">Prefer to call?</p>
+          <a href={`tel:${client.phone.replace(/\D/g,'')}`} class="font-barlow font-black text-3xl text-electric hover:text-electric-dark transition-colors">
+            {client.phone}
+          </a>
+          <p class="text-xs text-neutral-600 mt-1">{client.hours.weekday}</p>
+        </div>
+      </div>
+
+      <!-- Right form -->
+      <div class="scroll-reveal bg-dark border border-dark-border rounded-2xl p-8">
+        <form action={client.formAction} method="POST" class="space-y-5">
+          <input type="hidden" name="_subject" value="New Estimate Request — All Is Wells" />
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-1.5" for="f-name">First Name *</label>
+              <input id="f-name" name="first_name" type="text" required placeholder="Aaron"
+                class="w-full bg-dark-surface border border-dark-border text-white placeholder-neutral-600 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-electric transition-colors" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-1.5" for="f-lname">Last Name *</label>
+              <input id="f-lname" name="last_name" type="text" required placeholder="Smith"
+                class="w-full bg-dark-surface border border-dark-border text-white placeholder-neutral-600 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-electric transition-colors" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-1.5" for="f-phone">Phone Number *</label>
+            <input id="f-phone" name="phone" type="tel" required placeholder="(480) 555-0000"
+              class="w-full bg-dark-surface border border-dark-border text-white placeholder-neutral-600 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-electric transition-colors" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-1.5" for="f-email">Email Address</label>
+            <input id="f-email" name="email" type="email" placeholder="you@email.com"
+              class="w-full bg-dark-surface border border-dark-border text-white placeholder-neutral-600 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-electric transition-colors" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-1.5" for="f-service">Service Needed *</label>
+            <select id="f-service" name="service" required
+              class="w-full bg-dark-surface border border-dark-border text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-electric transition-colors appearance-none">
+              <option value="">Select a service...</option>
+              <option>Panel Upgrade</option>
+              <option>EV Charger Installation</option>
+              <option>Residential Wiring</option>
+              <option>Commercial Electrical</option>
+              <option>Outlet / Switch Repair</option>
+              <option>Lighting Installation</option>
+              <option>Ceiling Fan Installation</option>
+              <option>Emergency Service</option>
+              <option>Other / Not Sure</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-1.5" for="f-message">Tell Us More (optional)</label>
+            <textarea id="f-message" name="message" rows="3" placeholder="Describe your project or issue..."
+              class="w-full bg-dark-surface border border-dark-border text-white placeholder-neutral-600 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-electric transition-colors resize-none"></textarea>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-1.5">Best Time to Call</label>
+            <div class="flex gap-3 flex-wrap">
+              {['Morning (7–11am)', 'Afternoon (11–4pm)', 'Evening (4–7pm)'].map(t => (
+                <label class="flex items-center gap-2 text-sm text-neutral-400 cursor-pointer">
+                  <input type="radio" name="contact_time" value={t} class="accent-electric" />
+                  {t}
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <button type="submit" class="btn-electric w-full bg-electric text-dark font-barlow font-black text-sm tracking-widest uppercase px-6 py-4 rounded-lg">
+            Request My Free Estimate →
+          </button>
+
+          <p class="text-center text-neutral-600 text-xs">No spam. No obligation. Just an honest quote.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

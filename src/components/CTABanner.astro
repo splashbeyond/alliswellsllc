@@ -1,0 +1,24 @@
+---
+import { client } from '../client.config';
+---
+
+<section class="bg-electric py-20 px-6 text-center">
+  <div class="max-w-4xl mx-auto scroll-reveal">
+    <p class="font-barlow font-bold text-dark/60 text-sm tracking-[0.3em] uppercase mb-4">Ready to Get Started?</p>
+    <h2 class="font-barlow font-black text-dark mb-6" style="font-size: clamp(2.8rem, 6vw, 5.5rem); line-height:0.95; letter-spacing:-0.02em;">
+      LET'S GET YOUR<br/>POWER SORTED.
+    </h2>
+    <p class="text-dark/70 text-lg mb-10 max-w-lg mx-auto">
+      Free estimates. Honest pricing. Work done to code.
+      Give us a call or request an estimate online.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="/contact" class="bg-dark text-white font-barlow font-black text-sm tracking-widest uppercase px-10 py-5 rounded hover:bg-dark/90 transition-all hover:-translate-y-1 hover:shadow-xl">
+        Request Free Estimate
+      </a>
+      <a href={`tel:${client.phone.replace(/\D/g,'')}`} class="bg-dark/10 border-2 border-dark text-dark font-barlow font-black text-sm tracking-widest uppercase px-10 py-5 rounded hover:bg-dark/20 transition-all hover:-translate-y-1">
+        {client.phone}
+      </a>
+    </div>
+  </div>
+</section>

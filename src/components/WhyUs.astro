@@ -1,0 +1,30 @@
+---
+import { client } from '../client.config';
+const pillars = [
+  { stat: "On Time", label: "Every Time", body: "We show up when we say we will. Your time matters. No vague windows, no no-shows." },
+  { stat: "To Code", label: "Always Permitted", body: "Every job is done to Arizona code and properly permitted — protecting your home's value." },
+  { stat: "Honest", label: "No Surprise Bills", body: "Upfront quotes. No hidden fees. We explain what you need and what it costs — before we start." },
+  { stat: "Clean", label: "Work & Site", body: "We treat your home with respect. Clean tools, clean work, clean space when we leave." },
+];
+---
+
+<section class="bg-electric clip-bottom py-24 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="scroll-reveal mb-16">
+      <p class="font-barlow font-bold text-dark/60 text-sm tracking-[0.3em] uppercase mb-3">Why Choose Us</p>
+      <h2 class="font-barlow font-black text-dark" style="font-size: clamp(2.5rem, 5vw, 4rem); line-height:1.05; letter-spacing:-0.02em;">
+        The All Is Wells<br/>Difference.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {pillars.map((p, i) => (
+        <div class="scroll-reveal bg-dark rounded-xl p-7" style={`transition-delay: ${i * 80}ms`}>
+          <p class="font-barlow font-black text-electric text-4xl leading-none mb-1">{p.stat}</p>
+          <p class="font-barlow font-bold text-white text-base uppercase tracking-wide mb-3">{p.label}</p>
+          <p class="text-neutral-500 text-sm leading-relaxed">{p.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

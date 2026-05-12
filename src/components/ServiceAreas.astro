@@ -1,0 +1,39 @@
+---
+import { client } from '../client.config';
+---
+
+<section class="bg-electric clip-top py-28 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="scroll-reveal">
+        <p class="font-barlow font-bold text-dark/60 text-sm tracking-[0.3em] uppercase mb-3">Service Area</p>
+        <h2 class="font-barlow font-black text-dark mb-6" style="font-size: clamp(2.5rem, 5vw, 4rem); line-height:1.05; letter-spacing:-0.02em;">
+          Serving the<br/>West Valley.
+        </h2>
+        <p class="text-dark/70 leading-relaxed mb-8">
+          Based in Surprise, AZ — we cover the entire West Valley and surrounding communities. Not sure if we come to you? Call and ask.
+        </p>
+        <a href={`tel:${client.phone.replace(/\D/g,'')}`}
+           class="inline-block bg-dark text-white font-barlow font-black text-sm tracking-widest uppercase px-8 py-4 rounded hover:bg-dark/90 transition-colors">
+          Call {client.phone}
+        </a>
+      </div>
+
+      <div class="scroll-reveal">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          {client.serviceAreas.map((city, i) => (
+            <div class="bg-dark/10 rounded-xl px-4 py-3 text-center" style={`transition-delay: ${i * 40}ms`}>
+              <p class="font-barlow font-bold text-dark text-sm">
+                {city === client.address.city
+                  ? <span class="text-dark font-black underline underline-offset-2">{city}</span>
+                  : city
+                }
+              </p>
+              <p class="text-dark/50 text-xs mt-0.5">AZ</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

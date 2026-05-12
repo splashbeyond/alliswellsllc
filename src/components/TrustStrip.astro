@@ -1,0 +1,44 @@
+---
+import { client } from '../client.config';
+const stats = [
+  { value: `${client.yearsInBusiness}+`, label: 'Years in Business' },
+  { value: `${client.jobsCompleted}+`, label: 'Jobs Completed' },
+  { value: `${client.rating}`, label: 'Star Rating' },
+  { value: '5-Star', label: 'Google Rated' },
+];
+---
+
+<div class="bg-electric text-dark py-5 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6">
+    <!-- Mobile: 2x2 grid -->
+    <div class="grid grid-cols-2 gap-4 sm:hidden">
+      {stats.map(s => (
+        <div class="text-center">
+          <p class="font-barlow font-black text-3xl leading-none">{s.value}</p>
+          <p class="text-xs font-semibold uppercase tracking-wider mt-0.5 text-dark/70">{s.label}</p>
+        </div>
+      ))}
+    </div>
+    <!-- Desktop: horizontal row -->
+    <div class="hidden sm:flex items-center justify-between">
+      {stats.map((s, i) => (
+        <>
+          <div class="text-center flex-1">
+            <p class="font-barlow font-black text-4xl leading-none">{s.value}</p>
+            <p class="text-xs font-semibold uppercase tracking-wider mt-1 text-dark/70">{s.label}</p>
+          </div>
+          {i < stats.length - 1 && <div class="w-px h-10 bg-dark/20"></div>}
+        </>
+      ))}
+      <div class="w-px h-10 bg-dark/20"></div>
+      <div class="flex-1 flex items-center justify-center gap-6 text-xs font-bold uppercase tracking-wider text-dark/80">
+        {['Licensed', 'Bonded', 'Insured'].map(label => (
+          <span class="flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-9"/></svg>
+            {label}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>

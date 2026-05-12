@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import HeroSection from '../components/HeroSection.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import WhyUs from '../components/WhyUs.astro';
+import LeadForm from '../components/LeadForm.astro';
+import ProjectGallery from '../components/ProjectGallery.astro';
+import Testimonials from '../components/Testimonials.astro';
+import ServiceAreas from '../components/ServiceAreas.astro';
+import FAQ from '../components/FAQ.astro';
+import CTABanner from '../components/CTABanner.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <Header />
+  <HeroSection />
+  <TrustStrip />
+  <ServicesGrid preview={true} />
+  <WhyUs />
+  <LeadForm />
+  <ProjectGallery limit={6} />
+  <Testimonials />
+  <ServiceAreas />
+  <FAQ />
+  <CTABanner />
+  <Footer />
+</Layout>

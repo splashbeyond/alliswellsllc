@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import CTABanner from '../components/CTABanner.astro';
+import Footer from '../components/Footer.astro';
+import { client } from '../client.config';
+---
+
+<Layout title={`Electrical Services — ${client.name}`} description="Full list of electrical services: panel upgrades, EV charger installation, residential wiring, commercial electrical, and more. Serving Surprise, AZ.">
+  <Header />
+
+  <!-- Page hero -->
+  <section class="bg-dark pt-32 pb-16 px-6">
+    <div class="max-w-7xl mx-auto">
+      <p class="animate-slide-up font-barlow font-bold text-electric text-sm tracking-[0.3em] uppercase mb-3">What We Do</p>
+      <h1 class="animate-slide-up delay-100 font-barlow font-black text-white mb-4" style="font-size: clamp(3rem, 7vw, 6rem); line-height:0.95; letter-spacing:-0.02em;">
+        Our Services.
+      </h1>
+      <p class="animate-slide-up delay-200 text-neutral-400 max-w-xl text-lg">
+        Residential to commercial, repairs to full installs — all work is permitted, to code, and backed by our quality guarantee.
+      </p>
+    </div>
+  </section>
+
+  <ServicesGrid preview={false} />
+
+  <!-- Service detail cards -->
+  <section class="bg-dark-surface py-16 px-6">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
+
+      <div id="emergency" class="scroll-reveal bg-dark border-2 border-ember/40 rounded-2xl p-8">
+        <p class="text-ember font-barlow font-black text-sm tracking-widest uppercase mb-2">24/7 Available</p>
+        <h2 class="font-barlow font-black text-white text-3xl mb-3">Emergency Service</h2>
+        <p class="text-neutral-400 text-sm leading-relaxed mb-4">
+          Burning smell? Sparking outlets? Power out with no explanation? These aren't wait-until-Monday problems.
+          Aaron answers emergency calls any time — because electrical emergencies don't respect business hours.
+        </p>
+        <ul class="space-y-2 text-sm text-neutral-400 mb-6">
+          <li class="flex items-center gap-2"><span class="text-electric">→</span> 24/7 response, including nights and weekends</li>
+          <li class="flex items-center gap-2"><span class="text-electric">→</span> Burning smells, sparks, power loss</li>
+          <li class="flex items-center gap-2"><span class="text-electric">→</span> Tripped breakers that won't reset</li>
+          <li class="flex items-center gap-2"><span class="text-electric">→</span> Exposed wiring or damaged panels</li>
+        </ul>
+        <a href={`tel:${client.emergencyPhone.replace(/\D/g,'')}`} class="inline-block bg-ember text-white font-barlow font-black text-sm tracking-widest uppercase px-6 py-3 rounded hover:bg-ember/90 transition-colors">
+          Emergency: {client.emergencyPhone}
+        </a>
+      </div>
+
+      <div id="ev-charger" class="scroll-reveal bg-dark border border-dark-border rounded-2xl p-8">
+        <p class="text-electric font-barlow font-black text-sm tracking-widest uppercase mb-2">Popular Service</p>
+        <h2 class="font-barlow font-black text-white text-3xl mb-3">EV Charger Install</h2>
+        <p class="text-neutral-400 text-sm leading-relaxed mb-4">
+          Level 2 home charger installation is one of our most requested services. We handle the panel assessment, permits, wiring, and mounting — all in a single day in most cases.
+        </p>
+        <ul class="space-y-2 text-sm text-neutral-400 mb-6">
+          <li class="flex items-center gap-2"><span class="text-electric">→</span> Compatible with all EV brands (Tesla, Ford, GM, etc.)</li>
+          <li class="flex items-center gap-2"><span class="text-electric">→</span> Permit pulled and inspected</li>
+          <li class="flex items-center gap-2"><span class="text-electric">→</span> Panel capacity checked first</li>
+          <li class="flex items-center gap-2"><span class="text-electric">→</span> Most installs completed same day</li>
+        </ul>
+        <a href="/contact" class="btn-electric inline-block bg-electric text-dark font-barlow font-black text-sm tracking-widest uppercase px-6 py-3 rounded">
+          Get a Quote
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner />
+  <Footer />
+</Layout>

@@ -1,0 +1,101 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import CTABanner from '../components/CTABanner.astro';
+import Footer from '../components/Footer.astro';
+import { client } from '../client.config';
+---
+
+<Layout title={`About — ${client.name}`} description="Meet Aaron Wells — licensed electrician and owner of All Is Wells LLC. Honest electrical work in Surprise, AZ.">
+  <Header />
+
+  <!-- Hero -->
+  <section class="bg-dark pt-32 pb-0 px-6 overflow-hidden">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-12 items-end">
+        <div class="pb-16">
+          <p class="animate-slide-up font-barlow font-bold text-electric text-sm tracking-[0.3em] uppercase mb-3">The Person Behind the Work</p>
+          <h1 class="animate-slide-up delay-100 font-barlow font-black text-white mb-6" style="font-size: clamp(3rem, 7vw, 6rem); line-height:0.95; letter-spacing:-0.02em;">
+            Meet<br/>Aaron.
+          </h1>
+          <p class="animate-slide-up delay-200 text-neutral-400 text-lg leading-relaxed max-w-md">
+            Owner, lead electrician, and the person who answers when you call. All Is Wells LLC is built around one thing: doing honest electrical work the right way.
+          </p>
+        </div>
+        <div class="animate-slide-up delay-200 relative">
+          <img
+            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&fit=crop&q=80"
+            alt="Aaron Wells — Owner, All Is Wells LLC"
+            class="w-full object-cover rounded-t-2xl"
+            style="max-height: 500px; object-position: top;"
+          />
+          <div class="absolute bottom-4 left-4 bg-dark/90 backdrop-blur-sm border border-dark-border rounded-xl px-5 py-3">
+            <p class="font-barlow font-black text-white text-lg">Aaron Wells</p>
+            <p class="text-electric text-xs font-semibold uppercase tracking-wide">Owner & Licensed Electrician</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <TrustStrip />
+
+  <!-- Story section -->
+  <section class="bg-dark py-24 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-16">
+        <div class="scroll-reveal">
+          <h2 class="font-barlow font-black text-white text-4xl mb-6">The All Is Wells Story.</h2>
+          <div class="space-y-4 text-neutral-400 text-sm leading-relaxed">
+            <p>All Is Wells LLC was built on a simple frustration: too many contractors show up late, charge surprise fees, and cut corners on work that matters.</p>
+            <p>Aaron started this business to be the electrician he always wanted to hire — someone who shows up when they say, explains what's needed without the upsell, does the work to code with proper permits, and leaves the space cleaner than they found it.</p>
+            <p>Based in Surprise, AZ and serving the entire West Valley, every job gets Aaron's personal attention. When you call All Is Wells, you're talking to the person doing the work.</p>
+          </div>
+        </div>
+
+        <div class="scroll-reveal space-y-6">
+          <h2 class="font-barlow font-black text-white text-4xl mb-6">Credentials.</h2>
+          {[
+            { label: 'Licensed Electrician', value: 'State of Arizona' },
+            { label: 'Fully Bonded', value: 'Commercial & Residential' },
+            { label: 'Insured', value: 'Liability + Workers Comp' },
+            { label: 'Years Experience', value: `${client.yearsInBusiness}+ Years` },
+            { label: 'Jobs Completed', value: `${client.jobsCompleted}+ Projects` },
+            { label: 'Google Rating', value: `${client.rating} / 5 — ${client.ratingLabel}` },
+          ].map(item => (
+            <div class="flex justify-between items-center border-b border-dark-border pb-4">
+              <span class="text-neutral-500 text-sm">{item.label}</span>
+              <span class="font-semibold text-white text-sm">{item.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="bg-dark-surface py-16 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="scroll-reveal text-center mb-12">
+        <h2 class="font-barlow font-black text-white text-4xl">How We Work.</h2>
+      </div>
+      <div class="grid sm:grid-cols-3 gap-6">
+        {[
+          { num: '01', title: 'You Call or Submit', body: "Get in touch by phone or form. Aaron personally responds within 2 hours." },
+          { num: '02', title: 'Free Estimate', body: "We come out, assess the job, and give you an upfront quote. No pressure, no surprises." },
+          { num: '03', title: 'Work Done Right', body: "We show up on time, do the job properly, pull permits when needed, and leave everything clean." },
+        ].map((step, i) => (
+          <div class="scroll-reveal bg-dark border border-dark-border rounded-xl p-8" style={`transition-delay: ${i * 100}ms`}>
+            <p class="font-barlow font-black text-electric text-5xl leading-none mb-4">{step.num}</p>
+            <h3 class="font-barlow font-black text-white text-xl mb-2">{step.title}</h3>
+            <p class="text-neutral-500 text-sm leading-relaxed">{step.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner />
+  <Footer />
+</Layout>

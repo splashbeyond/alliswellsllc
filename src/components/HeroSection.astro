@@ -1,0 +1,128 @@
+---
+import { client } from '../client.config';
+---
+
+<section class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-dark">
+  <!-- Background photo with overlay -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src="/project-hex-garage.jpg"
+      alt="All Is Wells LLC — custom LED lighting installation"
+      class="w-full h-full object-cover opacity-25"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-dark via-dark/90 to-dark/60"></div>
+  </div>
+
+  <!-- Yellow left accent bar -->
+  <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-electric z-10"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-32 w-full">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+      <!-- Left: Headline -->
+      <div>
+        <p class="animate-slide-up delay-100 font-barlow font-bold text-electric text-sm tracking-[0.3em] uppercase mb-6">
+          {client.seo.city}, {client.seo.state} Electrician
+        </p>
+
+        <h1 class="font-barlow font-black leading-none tracking-tight mb-8">
+          <span class="animate-slide-up delay-100 block text-white" style="font-size: clamp(3.5rem, 9vw, 7.5rem);">QUALITY.</span>
+          <span class="animate-slide-up delay-200 block text-electric" style="font-size: clamp(3.5rem, 9vw, 7.5rem);">HONEST.</span>
+          <span class="animate-slide-up delay-300 block text-white" style="font-size: clamp(3.5rem, 9vw, 7.5rem);">TO CODE.</span>
+        </h1>
+
+        <p class="animate-slide-up delay-400 text-neutral-400 text-lg max-w-md mb-10 leading-relaxed">
+          Residential & commercial electrical — licensed, bonded, and insured.
+          Serving {client.seo.city} and the West Valley.
+        </p>
+
+        <div class="animate-slide-up delay-400 flex flex-col sm:flex-row gap-4 mb-10">
+          <a href="/contact" class="btn-electric bg-electric text-dark font-barlow font-black text-base tracking-widest uppercase px-8 py-4 rounded text-center">
+            Get a Free Estimate →
+          </a>
+          <a href={`tel:${client.phone.replace(/\D/g,'')}`} class="btn-outline-white border-2 border-white text-white font-barlow font-black text-base tracking-widest uppercase px-8 py-4 rounded text-center">
+            {client.phone}
+          </a>
+        </div>
+
+        <!-- Trust badges row -->
+        <div class="animate-slide-up delay-500 flex flex-wrap gap-4 text-sm text-neutral-400">
+          <span class="flex items-center gap-1.5">
+            <svg class="text-electric flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-9"/></svg>
+            Licensed
+          </span>
+          <span class="text-dark-border">|</span>
+          <span class="flex items-center gap-1.5">
+            <svg class="text-electric flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-9"/></svg>
+            Bonded
+          </span>
+          <span class="text-dark-border">|</span>
+          <span class="flex items-center gap-1.5">
+            <svg class="text-electric flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-9"/></svg>
+            Insured
+          </span>
+          <span class="text-dark-border">|</span>
+          <span class="flex items-center gap-1.5">
+            <svg class="text-electric flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>{client.ratingLabel}</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Right: Quick estimate card -->
+      <div class="animate-slide-up delay-300 bg-dark-surface border border-dark-border rounded-2xl p-8 shadow-2xl">
+        <p class="font-barlow font-black text-2xl text-white mb-1">Get a Free Estimate</p>
+        <p class="text-neutral-500 text-sm mb-6">We'll call you back within 2 hours.</p>
+
+        <form action={client.formAction} method="POST" class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-1.5" for="hero-name">Your Name</label>
+            <input id="hero-name" name="name" type="text" required placeholder="Aaron Smith"
+              class="w-full bg-dark border border-dark-border text-white placeholder-neutral-600 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-electric transition-colors" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-1.5" for="hero-phone">Phone Number</label>
+            <input id="hero-phone" name="phone" type="tel" required placeholder="(480) 555-0000"
+              class="w-full bg-dark border border-dark-border text-white placeholder-neutral-600 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-electric transition-colors" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-1.5" for="hero-service">What do you need?</label>
+            <select id="hero-service" name="service"
+              class="w-full bg-dark border border-dark-border text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-electric transition-colors appearance-none">
+              <option value="">Select a service...</option>
+              <option>Panel Upgrade</option>
+              <option>EV Charger Install</option>
+              <option>Residential Wiring</option>
+              <option>Commercial Electrical</option>
+              <option>Outlet / Switch Repair</option>
+              <option>Lighting Installation</option>
+              <option>Emergency Service</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-electric w-full bg-electric text-dark font-barlow font-black text-sm tracking-widest uppercase px-6 py-4 rounded-lg mt-2">
+            Request Estimate
+          </button>
+        </form>
+
+        <p class="text-center text-neutral-600 text-xs mt-4">
+          Or call direct: <a href={`tel:${client.phone.replace(/\D/g,'')}`} class="text-electric hover:underline">{client.phone}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Emergency bar pinned to bottom -->
+  <div class="absolute bottom-0 left-0 right-0 z-20 bg-ember/10 border-t border-ember/30 backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex flex-col sm:flex-row items-center justify-center gap-2 text-sm">
+      <span class="text-ember font-semibold flex items-center gap-1.5">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        24/7 EMERGENCY SERVICE
+      </span>
+      <span class="hidden sm:inline text-neutral-600">—</span>
+      <a href={`tel:${client.emergencyPhone.replace(/\D/g,'')}`} class="text-white font-bold hover:text-ember transition-colors">
+        Call Now: {client.emergencyPhone}
+      </a>
+    </div>
+  </div>
+</section>

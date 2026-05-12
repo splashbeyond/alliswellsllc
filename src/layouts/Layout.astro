@@ -1,0 +1,141 @@
+---
+import { client } from '../client.config';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = client.seo.title,
+  description = client.seo.description,
+  image = 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=1200&q=80',
+} = Astro.props;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "Electrician"],
+  "name": client.name,
+  "telephone": client.phone,
+  "email": client.email,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": client.address.street,
+    "addressLocality": client.address.city,
+    "addressRegion": client.address.state,
+    "postalCode": client.address.zip,
+    "addressCountry": "US",
+  },
+  "areaServed": client.serviceAreas.map(city => ({ "@type": "City", "name": city })),
+  "openingHours": ["Mo-Fr 07:00-18:00", "Sa 08:00-14:00"],
+  "priceRange": "$$",
+  "hasCredential": ["Licensed", "Bonded", "Insured"],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": client.rating,
+    "reviewCount": 5,
+  },
+};
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={Astro.url.href} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="bg-dark text-white font-sans antialiased">
+    <slot />
+    <style is:global>
+      /* Typography text effects — from typography-text-effects skill */
+      @keyframes slideUp {
+        from { opacity: 0; transform: translateY(40px); }
+        to   { opacity: 1; transform: translateY(0);    }
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+      }
+      @keyframes lineGrow {
+        from { width: 0; }
+        to   { width: 100%; }
+      }
+
+      .animate-slide-up { animation: slideUp 0.8s cubic-bezier(0.16,1,0.3,1) both; }
+      .delay-100 { animation-delay: 0.1s; }
+      .delay-200 { animation-delay: 0.2s; }
+      .delay-300 { animation-delay: 0.35s; }
+      .delay-400 { animation-delay: 0.5s; }
+      .delay-500 { animation-delay: 0.65s; }
+
+      .scroll-reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .scroll-reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Button hover shimmer */
+      .btn-electric {
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .btn-electric::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+        transform: translateX(-100%);
+        transition: transform 0.4s ease;
+      }
+      .btn-electric:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,214,0,0.35); }
+      .btn-electric:hover::after { transform: translateX(100%); }
+
+      .btn-outline-white {
+        transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      }
+      .btn-outline-white:hover { background: white; color: #0A0A0A; transform: translateY(-2px); }
+
+      /* Yellow left-border cards */
+      .service-card {
+        transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+      }
+      .service-card:hover { transform: translateY(-4px); border-left-color: #FFD600; background: #1E1E1E; }
+
+      /* Gallery zoom */
+      .gallery-img { transition: transform 0.5s ease; }
+      .gallery-item:hover .gallery-img { transform: scale(1.06); }
+
+      /* Diagonal clip dividers */
+      .clip-bottom { clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%); }
+      .clip-top    { clip-path: polygon(0 6%, 100% 0, 100% 100%, 0 100%); }
+
+      html { font-size: 16px; }
+      * { box-sizing: border-box; }
+    </style>
+    <script>
+      // Scroll reveal observer
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+    </script>
+  </body>
+</html>

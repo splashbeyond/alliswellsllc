@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import CTABanner from '../components/CTABanner.astro';
+import Footer from '../components/Footer.astro';
+import { client } from '../client.config';
+
+const allPhotos = [
+  { src: '/project-hex-garage.jpg', label: 'Custom LED Build', city: 'Surprise, AZ' },
+  { src: '/project-coffered-ceiling.jpg', label: 'Coffered Ceiling Lighting', city: 'Surprise, AZ' },
+  { src: '/project-recessed-living.jpg', label: 'Recessed Lighting', city: 'Surprise, AZ' },
+  { src: '/project-pendant-bedroom.jpg', label: 'Pendant Lights', city: 'Surprise, AZ' },
+  { src: '/project-hex-install.jpg', label: 'Hexagonal LED Install', city: 'Surprise, AZ' },
+  { src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&fit=crop&q=80', label: 'Panel Upgrade', city: 'Surprise, AZ' },
+  { src: 'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&fit=crop&q=80', label: 'EV Charger Install', city: 'Peoria, AZ' },
+  { src: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&fit=crop&q=80', label: 'Commercial Project', city: 'Glendale, AZ' },
+  { src: 'https://images.unsplash.com/photo-1590534247854-e97d5e3feef6?w=800&fit=crop&q=80', label: 'Exterior Lighting', city: 'Sun City, AZ' },
+  { src: 'https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=800&fit=crop&q=80', label: 'Smart Home Wiring', city: 'Surprise, AZ' },
+  { src: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&fit=crop&q=80', label: 'Circuit Service', city: 'Buckeye, AZ' },
+  { src: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&fit=crop&q=80', label: 'Office Fit-Out', city: 'Peoria, AZ' },
+];
+---
+
+<Layout title={`Project Gallery — ${client.name}`} description="View completed electrical projects by All Is Wells LLC in Surprise, AZ and the West Valley.">
+  <Header />
+
+  <section class="bg-dark pt-32 pb-16 px-6">
+    <div class="max-w-7xl mx-auto">
+      <p class="animate-slide-up font-barlow font-bold text-electric text-sm tracking-[0.3em] uppercase mb-3">Our Work</p>
+      <h1 class="animate-slide-up delay-100 font-barlow font-black text-white mb-4" style="font-size: clamp(3rem, 7vw, 6rem); line-height:0.95; letter-spacing:-0.02em;">
+        Project Gallery.
+      </h1>
+      <p class="animate-slide-up delay-200 text-neutral-400 text-lg max-w-xl">
+        Real projects, real results. Every photo is a job we completed in Surprise, AZ and the West Valley.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-dark pb-24 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        {allPhotos.map((photo, i) => (
+          <div class="scroll-reveal gallery-item relative overflow-hidden rounded-xl bg-dark-surface aspect-square group"
+               style={`transition-delay: ${(i % 8) * 50}ms`}>
+            <img src={photo.src} alt={`${photo.label} — ${photo.city}`} class="gallery-img w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              <p class="font-barlow font-black text-white text-base">{photo.label}</p>
+              <p class="text-electric text-xs">{photo.city}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner />
+  <Footer />
+</Layout>

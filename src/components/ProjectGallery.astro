@@ -1,0 +1,50 @@
+---
+interface Props { limit?: number; }
+const { limit = 6 } = Astro.props;
+
+const photos = [
+  { src: '/project-hex-garage.jpg', alt: 'Custom hexagonal LED lighting — commercial garage', label: 'Custom LED Build' },
+  { src: '/project-coffered-ceiling.jpg', alt: 'Coffered ceiling with recessed lighting and fan', label: 'Ceiling Lighting' },
+  { src: '/project-recessed-living.jpg', alt: 'Recessed can lighting — residential living room', label: 'Recessed Lighting' },
+  { src: '/project-pendant-bedroom.jpg', alt: 'Pendant light installation — master bedroom', label: 'Pendant Lights' },
+  { src: '/project-hex-install.jpg', alt: 'Hexagonal LED panel installation in progress', label: 'LED Install' },
+  { src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&fit=crop&q=80', alt: 'Electrical panel upgrade — Surprise, AZ', label: 'Panel Upgrade' },
+  { src: 'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&fit=crop&q=80', alt: 'EV charger installation', label: 'EV Charger Install' },
+  { src: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&fit=crop&q=80', alt: 'Commercial electrical work', label: 'Commercial Project' },
+  { src: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&fit=crop&q=80', alt: 'Circuit breaker service', label: 'Circuit Service' },
+].slice(0, limit);
+---
+
+<section class="bg-dark py-24 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="scroll-reveal flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+      <div>
+        <p class="font-barlow font-bold text-electric text-sm tracking-[0.3em] uppercase mb-3">Our Work</p>
+        <h2 class="font-barlow font-black text-white" style="font-size: clamp(2.5rem, 5vw, 4rem); line-height:1.05; letter-spacing:-0.02em;">
+          Real Projects.<br/>Real Results.
+        </h2>
+      </div>
+      <a href="/gallery" class="text-electric font-semibold text-sm hover:underline whitespace-nowrap">
+        View Full Gallery →
+      </a>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
+      {photos.map((photo, i) => (
+        <div class={`scroll-reveal gallery-item relative overflow-hidden rounded-xl bg-dark-surface aspect-square ${i === 0 ? 'col-span-2 lg:col-span-1 lg:row-span-2 aspect-auto' : ''}`}
+             style={`transition-delay: ${i * 50}ms; ${i === 0 ? 'min-height: 300px;' : ''}`}>
+          <img
+            src={photo.src}
+            alt={photo.alt}
+            class="gallery-img w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <span class="absolute bottom-3 left-3 bg-dark/80 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full">
+            {photo.label}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
